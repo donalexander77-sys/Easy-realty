@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#123b66" />
+  <meta name="description" content="Easy Realty - Tallahassee real estate help for buyers, sellers, FSBO owners, and relocating clients." />
+  <title>Easy Realty | Tallahassee Real Estate</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <style>
+    :root{
+      --navy:#123b66;
+      --blue:#1f6fb2;
+      --light:#f4f8fc;
+      --gold:#d9a441;
+      --text:#1d2a36;
+      --muted:#667788;
+      --white:#fff;
+      --green:#1f7a4d;
+      --shadow:0 10px 30px rgba(18,59,102,.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,#eef5fb 0%,#fff 35%,#f7fafc 100%);
+      color:var(--text);
+    }
+    .app{max-width:920px;margin:auto;min-height:100vh;padding-bottom:92px}
+    header{
+      background:linear-gradient(135deg,var(--navy),var(--blue));
+      color:#fff;padding:28px 20px 32px;border-radius:0 0 28px 28px;
+      box-shadow:var(--shadow)
+    }
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{
+      width:58px;height:58px;border-radius:16px;background:#fff;color:var(--navy);
+      display:grid;place-items:center;font-size:30px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.14)
+    }
+    h1{margin:0;font-size:30px;line-height:1}
+    .tagline{margin:6px 0 0;opacity:.92;font-size:15px}
+    .hero{
+      margin-top:24px;background:rgba(255,255,255,.13);padding:18px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.2)
+    }
+    .hero h2{margin:0 0 8px;font-size:22px}
+    .hero p{margin:0;line-height:1.5}
+    .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+    .btn{
+      border:0;border-radius:14px;padding:13px 14px;font-size:15px;font-weight:700;
+      cursor:pointer;text-decoration:none;text-align:center;display:inline-block
+    }
+    .btn-primary{background:var(--gold);color:#1f2b35}
+    .btn-light{background:#fff;color:var(--navy)}
+    .btn-blue{background:var(--blue);color:#fff}
+    .btn-green{background:var(--green);color:#fff}
+    main{padding:20px}
+    .section-title{font-size:20px;margin:8px 0 14px}
+    .grid{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px
+    }
+    .card{
+      background:#fff;border:1px solid #e5edf4;border-radius:var(--radius);padding:18px;
+      box-shadow:var(--shadow);cursor:pointer;transition:.15s transform,.15s box-shadow
+    }
+    .card:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(18,59,102,.16)}
+    .icon{font-size:31px}
+    .card h3{margin:10px 0 5px;font-size:17px;color:var(--navy)}
+    .card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+    .panel{
+      display:none;background:#fff;border-radius:20px;padding:20px;margin-top:18px;
+      border:1px solid #e4edf5;box-shadow:var(--shadow)
+    }
+    .panel.active{display:block}
+    .panel h2{margin-top:0;color:var(--navy)}
+    .close{float:right;border:0;background:#edf3f8;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:18px}
+    label{display:block;font-weight:700;margin:12px 0 6px;font-size:14px}
+    input,select,textarea{
+      width:100%;padding:12px;border:1px solid #cfdbe6;border-radius:12px;font-size:16px;background:#fff
+    }
+    textarea{min-height:92px;resize:vertical}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .result{
+      margin-top:14px;padding:16px;border-radius:14px;background:#eef7f2;border:1px solid #cfe8da;
+      font-size:17px
+    }
+    .note{color:var(--muted);font-size:12px;line-height:1.45}
+    .quick-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .quick-links a{flex:1;min-width:140px}
+    footer{text-align:center;color:var(--muted);font-size:12px;padding:28px 18px}
+    .bottom-nav{
+      position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(920px,100%);
+      background:#fff;border-top:1px solid #dce6ef;display:grid;grid-template-columns:repeat(4,1fr);
+      z-index:50;box-shadow:0 -8px 20px rgba(0,0,0,.06)
+    }
+    .bottom-nav button{
+      border:0;background:#fff;padding:10px 4px;color:var(--navy);font-size:12px;cursor:pointer
+    }
+    .bottom-nav span{display:block;font-size:22px;margin-bottom:2px}
+    .pill{
+      display:inline-block;background:#e9f2fa;color:var(--navy);border-radius:999px;padding:7px 10px;
+      margin:4px 4px 0 0;font-size:12px;font-weight:700
+    }
+    .status{display:none;margin-top:12px;padding:12px;border-radius:10px;background:#edf7ee;color:#245d36}
+    @media(max-width:620px){
+      .grid{grid-template-columns:1fr 1fr}
+      .form-grid{grid-template-columns:1fr}
+      h1{font-size:26px}
+      .hero-actions{grid-template-columns:1fr}
+    }
+    @media(max-width:380px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header id="home">
+    <div class="brand">
+      <div class="logo">ER</div>
+      <div>
+        <h1>Easy Realty</h1>
+        <div class="tagline">Real Estate Made Easier • Tallahassee, Florida</div>
+      </div>
+    </div>
+    <div class="hero">
+      <h2>How can I help you today?</h2>
+      <p>Buying, selling, relocating, handling a FSBO, or just trying to understand your numbers? Start here.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:+18036455792">📞 Call Don</a>
+        <a class="btn btn-light" href="sms:+18036455792">💬 Text Don</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="section-title">Real Estate Tools</h2>
+    <div class="grid">
+      <div class="card" onclick="openPanel('buy')"><div class="icon">🏠</div><h3>Buy a Home</h3><p>Tell me what you are looking for.</p></div>
+      <div class="card" onclick="openPanel('sell')"><div class="icon">💰</div><h3>Sell My Home</h3><p>Request a no-pressure seller consultation.</p></div>
+      <div class="card" onclick="openPanel('value')"><div class="icon">📊</div><h3>Home Value</h3><p>Request a market value review.</p></div>
+      <div class="card" onclick="openPanel('fsbo')"><div class="icon">🏷️</div><h3>FSBO Help</h3><p>Selling yourself? I can help with your next purchase.</p></div>
+      <div class="card" onclick="openPanel('net')"><div class="icon">🧮</div><h3>Seller Net Sheet</h3><p>Estimate what you may net from a sale.</p></div>
+      <div class="card" onclick="openPanel('relocate')"><div class="icon">📍</div><h3>Move to Tallahassee</h3><p>Relocation help and local guidance.</p></div>
+      <div class="card" onclick="openPanel('tax')"><div class="icon">📉</div><h3>Property Tax Review</h3><p>Organize information for a value review or appeal.</p></div>
+      <div class="card" onclick="openPanel('drone')"><div class="icon">🚁</div><h3>Drone Services</h3><p>FAA Part 107 aerial photo and video services.</p></div>
+    </div>
+
+    <div id="buy" class="panel">
+      <button class="close" onclick="closePanels()">×</button>
+      <h2>Buy a Home</h2>
+      <p>Tell me what you want and I’ll have a starting point for helping you.</p>
+      <form onsubmit="saveLead(event,'Buyer')">
+        <div class="form-grid">
+          <div><label>Name</label><input name="name" required></div>
+          <div><label>Phone</label><input name="phone" type="tel" required></div>
+        </div>
+        <label>Preferred area or neighborhood</label><input name="area" placeholder="Example: Northeast Tallahassee">
+        <div class="form-grid">
+          <div><label>Price range</label><input name="price" placeholder="$300,000–$450,000"></div>
+          <div><label>Bedrooms</label><select name="beds"><option>2+</option><option>3+</option><option>4+</option><option>5+</option></select></div>
+        </div>
+        <label>Anything else?</label><textarea name="notes" placeholder="Lot size, acreage, one story, garage, move date..."></textarea>
+        <button class="btn btn-blue" type="submit">Save My Request</button>
+        <div class="status"></div>
+      </form>
+    </div>
+
+    <div id="sell" class="panel">
+      <button class="close" onclick="closePanels()">×</button>
+      <h2>Sell My Home</h2>
+      <form onsubmit="saveLead(event,'Seller')">
+        <label>Name</label><input name="name" required>
+        <label>Phone</label><input name="phone" type="tel" required>
+        <label>Property address</label><input name="address" required>
+        <label>When are you thinking of selling?</label>
+        <select name="timeline"><option>Now</option><option>Within 30 days</option><option>1–3 months</option><option>3–6 months</option><option>Just exploring</option></select>
+        <label>Notes</label><textarea name="notes"></textarea>
+        <button class="btn btn-blue" type="submit">Save Seller Request</button>
+        <div class="status"></div>
+      </form>
+    </div>
+
+    <div id="value" class="panel">
+      <button class="close" onclick="closePanels()">×</button>
+      <h2>What Is My Home Worth?</h2>
+      <p>I can prepare a more useful estimate when I know the property and any major improvements.</p>
+      <form onsubmit="saveLead(event,'Home Value')">
+        <label>Name</label><input name="name" required>
+        <label>Phone</label><input name="phone" required>
+        <label>Property address</label><input name="address" required>
+        <label>Recent improvements</label><textarea name="updates" placeholder="Roof, HVAC, kitchen, bath, flooring, etc."></textarea>
+        <button class="btn btn-blue" type="submit">Request Value Review</button>
+        <div class="status"></div>
+      </form>
+    </div>
+
+    <div id="fsbo" class="panel">
+      <button class="close" onclick="closePanels()">×</button>
+      <h2>FSBO Owner? I Can Help With Your Next Home</h2>
+      <p>You may want to sell your current home yourself but still have professional help when you buy your next one. That is exactly what this section is for.</p>
+      <span class="pill">Buyer representation</span><span class="pill">Property search</span><span class="pill">Offer strategy</span><span class="pill">Inspection guidance</span>
+      <form onsubmit="saveLead(event,'FSBO Buyer')">
+        <label>Name</label><input name="name" required>
+        <label>Phone</label><input name="phone" required>
+        <label>Your current FSBO address</label><input name="fsboAddress">
+        <label>Where would you like to buy next?</label><input name="buyArea">
+        <button class="btn btn-blue" type="submit">Ask Don to Help Me Buy</button>
+        <div class="status"></div>
+      </form>
+    </div>
+
+    <div id="net" class="panel">
+      <button class="close" onclick="closePanels()">×</button>
+      <h2>Seller Net Sheet Calculator</h2>
+      <div class="form-grid">
+        <div><label>Sale price</label><input id="salePrice" type="number" value="400000"></div>
+        <div><label>Mortgage payoff</label><input id="payoff" type="number" value="150000"></div>
+        <div><label>Brokerage fee %</label><input id="commission" type="number" step=".1" value="5"></div>
+        <div><label>Other seller costs</label><input id="otherCosts" type="number" value="5000"></div>
+        <div><label>Repairs / credits</label><input id="repairs" type="number" value="0"></div>
+        <div><label>Estimated tax / title / misc.</label><input id="misc" type="number" value="4000"></div>
+      </div>
+      <button class="btn btn-green" onclick="calcNet()">Calculate Estimated Net</button>
+      <div class="result" id="netResult">Enter your numbers and tap Calculate.</div>
+      <p class="note">This is an estimate only and is not a closing statement. Actual taxes, title charges, prorations, brokerage compensation, repairs, credits, loan payoff and other costs can vary.</p>
+    </div>
+
+    <div id="relocate" class="panel">
+      <button class="close" onclick="closePanels()">×</button>
+      <h2>Moving to Tallahassee</h2>
+      <p>Need help narrowing down where to live? I can help compare neighborhoods, commute, acreage, home styles and price ranges.</p>
+      <div class="quick-links">
+        <button class="btn btn-blue" onclick="copyText('I am interested in moving to Tallahassee and would like help choosing an area.')">Copy Relocation Message</button>
+        <a class="btn btn-light" style="border:1px solid #ccd9e5" href="sms:+18036455792?body=I%20am%20interested%20in%20moving%20to%20Tallahassee%20and%20would%20like%20help%20choosing%20an%20area.">Text Don</a>
+      </div>
+      <h3>Good starting points</h3>
+      <span class="pill">Northeast Tallahassee</span><span class="pill">Arbor Hill</span><span class="pill">Southwood area</span><span class="pill">Acreage properties</span>
+    </div>
+
+    <div id="tax" class="panel">
+      <button class="close" onclick="closePanels()">×</button>
+      <h2>Property Tax Value Review</h2>
+      <p>This tool helps organize the basic information you may need when reviewing an assessed value.</p>
+      <form onsubmit="saveLead(event,'Property Tax Review')">
+        <label>Name</label><input name="name" required>
+        <label>Phone</label><input name="phone" required>
+        <label>Property address</label><input name="address" required>
+        <label>Assessed value</label><input name="assessed" type="number">
+        <label>Why do you believe the value is high?</label><textarea name="reason"></textarea>
+        <button class="btn btn-blue" type="submit">Save Review Request</button>
+        <div class="status"></div>
+      </form>
+      <p class="note">Easy Realty is not a law firm or tax authority. This section is intended to help organize real-estate valuation information.</p>
+    </div>
+
+    <div id="drone" class="panel">
+      <button class="close" onclick="closePanels()">×</button>
+      <h2>Drone Photography</h2>
+      <p>Professional aerial photography can help show homes, acreage, commercial property and surrounding areas from a different perspective.</p>
+      <p><strong>FAA Part 107 Certified Drone Pilot</strong></p>
+      <div class="quick-links">
+        <a class="btn btn-blue" href="sms:+18036455792?body=I%20would%20like%20information%20about%20drone%20photography.">Request Drone Information</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <strong>Easy Realty</strong><br>
+    Tallahassee, Florida • Licensed Real Estate Brokerage<br>
+    Don Alexander • 803-645-5792<br><br>
+    This app is for general informational purposes and does not replace legal, tax, insurance, lending, inspection or title advice.
+  </footer>
+</div>
+
+<nav class="bottom-nav">
+  <button onclick="goHome()"><span>🏠</span>Home</button>
+  <button onclick="openPanel('buy')"><span>🔎</span>Buy</button>
+  <button onclick="openPanel('sell')"><span>🏷️</span>Sell</button>
+  <button onclick="location.href='tel:+18036455792'"><span>📞</span>Call</button>
+</nav>
+
+<script>
+function openPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  const p=document.getElementById(id);
+  p.classList.add('active');
+  p.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function closePanels(){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));goHome();}
+function goHome(){window.scrollTo({top:0,behavior:'smooth'});}
+
+function money(n){
+  return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n||0);
+}
+function calcNet(){
+  const sale=+document.getElementById('salePrice').value||0;
+  const payoff=+document.getElementById('payoff').value||0;
+  const comm=+document.getElementById('commission').value||0;
+  const other=+document.getElementById('otherCosts').value||0;
+  const repairs=+document.getElementById('repairs').value||0;
+  const misc=+document.getElementById('misc').value||0;
+  const commissionAmount=sale*(comm/100);
+  const net=sale-payoff-commissionAmount-other-repairs-misc;
+  document.getElementById('netResult').innerHTML =
+    '<strong>Estimated seller net: '+money(net)+'</strong><br>'+
+    '<small>Sale '+money(sale)+' − payoff '+money(payoff)+' − brokerage '+money(commissionAmount)+' − other costs '+money(other+repairs+misc)+'</small>';
+}
+function saveLead(e,type){
+  e.preventDefault();
+  const data=Object.fromEntries(new FormData(e.target).entries());
+  const leads=JSON.parse(localStorage.getItem('easyRealtyLeads')||'[]');
+  leads.push({type,date:new Date().toISOString(),...data});
+  localStorage.setItem('easyRealtyLeads',JSON.stringify(leads));
+  const status=e.target.querySelector('.status');
+  status.style.display='block';
+  status.textContent='Saved on this device. Tap below to text Don and send your request.';
+  let body=encodeURIComponent(type+' request from '+(data.name||'')+'. Phone: '+(data.phone||'')+'. '+JSON.stringify(data));
+  if(!e.target.querySelector('.sendText')){
+    const a=document.createElement('a');
+    a.className='btn btn-green sendText';
+    a.style.marginTop='10px';
+    a.href='sms:+18036455792?body='+body;
+    a.textContent='Text This Request to Don';
+    e.target.appendChild(a);
+  }
+}
+function copyText(text){
+  navigator.clipboard.writeText(text).then(()=>alert('Message copied.'));
+}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));}
+</script>
+</body>
+</html>
