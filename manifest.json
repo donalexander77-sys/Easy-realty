@@ -1,0 +1,17 @@
+{
+  "name": "Easy Realty",
+  "short_name": "Easy Realty",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f8fc",
+  "theme_color": "#123b66",
+  "description": "Easy Realty Tallahassee real estate app",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
